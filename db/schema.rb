@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_065411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "access_level"
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
