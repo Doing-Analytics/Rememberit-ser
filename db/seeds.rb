@@ -7,4 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 admin = User.create!(email: 'admin@mail.com', password: '123456', password_confirmation: '123456',
                      access_level: :admin, name: 'John')
-Product.create!(name: 'Asimo', description: "Honda's first robot")
+
