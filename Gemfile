@@ -9,7 +9,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
-gem 'devise'
+
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -46,3 +46,6 @@ group :development do
   # gem "spring"
 end
 
+gem 'bcrypt'
+gem 'jwt'
+gem 'simple_command'
