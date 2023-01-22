@@ -11,7 +11,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "paranoia", "~> 2.2"
 gem "pundit", "~> 2.3"
-gem 'aasm'
+gem 'aasm', '~> 4.12'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
