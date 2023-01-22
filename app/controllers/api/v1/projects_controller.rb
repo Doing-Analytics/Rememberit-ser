@@ -4,24 +4,19 @@ class Api::V1::ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def new
-    @project = Project.new
-  end
-
   def create
-    @project = Project.new(project_params)
+    authorize @project, policy_class: ProjectPolicy
+    @project = @current_user.projects.create(project_params)
     
-    if @project.save
+    if @project
       render json: { message: 'create project successfully'}
     else
-      render json: { message: 'create project failed' }
+      render json: { message: "#{@project.errors.full_messages}" }
     end
   end
 
-  def edit
-  end
-
   def update
+    authorize @project, policy_class: ProjectPolicy
     if @project.update(project_params)
       render json: { message: 'update project successfully'}
     else
@@ -30,6 +25,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project, policy_class: ProjectPolicy
     @project.deleted_at
     render json: { message: 'delete successfully' }
   end
