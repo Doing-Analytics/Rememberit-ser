@@ -21,9 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_164618) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.bigint "user_id", null: false
-    t.string "state"
-    t.datetime "started_at"
-    t.datetime "completed_at"
+    t.string "aasm_state"
     t.index ["deleted_at"], name: "index_projects_on_deleted_at"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
