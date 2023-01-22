@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
+  
   before_action :authenticate_request
   attr_reader :current_user
+
+  def current_user
+    @current_user
+  end
 
   private
 
