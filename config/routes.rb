@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   end
 
   post 'authenticate', to: 'authentication#authenticate'
-  resources :products
+  resources :api_tests
 end
