@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class Api::V1::ProjectsController < ApplicationController
   before_action :find_project, only: [:edit, :update, :destroy]
   def index
     @projects = Project.all
@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     
     if @project.save
-      redirect_to projects_path, render json: { message: 'create project successfully'}
+      render json: { message: 'create project successfully'}
     else
       render json: { message: 'create project failed' }
     end
@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to projects_path, render json: { message: 'update project successfully'}
+      render json: { message: 'update project successfully'}
     else
       render json: { message: 'update project failed' }
     end
@@ -31,13 +31,12 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.deleted_at
-    redirect_to projects_path
     render json: { message: 'delete successfully' }
   end
 
   private
   def project_params
-    params.requrie(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description)
   end
 
   def find_project
