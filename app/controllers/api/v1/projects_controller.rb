@@ -1,7 +1,8 @@
 class Api::V1::ProjectsController < ApplicationController
   before_action :find_project, only: [:edit, :update, :destroy]
   def index
-    @projects = Project.all
+    @projects = @current_user.projects.all
+    render json: { message: "#{@projects.first.title}" }
   end
 
   def create
