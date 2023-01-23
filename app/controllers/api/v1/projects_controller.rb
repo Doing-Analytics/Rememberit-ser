@@ -1,12 +1,13 @@
 class Api::V1::ProjectsController < ApplicationController
   before_action :find_project, only: [:edit, :update, :destroy]
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
+    render json: { message: "#{@projects.first.title}" }
   end
 
   def create
     authorize @project, policy_class: ProjectPolicy
-    @project = @current_user.projects.create(project_params)
+    @project = current_user.projects.create(project_params)
     
     if @project
       render json: { message: 'create project successfully'}
