@@ -15,11 +15,21 @@ class Project < ApplicationRecord
     end
 
     event :progress do
-      transitions from: :unstarted, to: :in_progress
+      transitions from: :unstarted, to: :in_progress, after: :set_process_time
     end
 
     event :complete do
-      transitions from: :in_progress, to: :completed
+      transitions from: :in_progress, to: :completed, after: :set_complete_time
     end
+  end
+
+  private
+
+  def set_process_time
+    update(progress_in: Time.current)
+  end
+
+  def set_complete_time
+    update(completed_at: Time.current)
   end
 end
