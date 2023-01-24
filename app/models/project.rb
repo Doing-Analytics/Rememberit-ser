@@ -1,10 +1,11 @@
 class Project < ApplicationRecord
-
   acts_as_paranoid
   belongs_to :user
 
-  include AASM
+  has_many :team_projects
+  has_many :teams, through: :team_projects
 
+  include AASM
 
   aasm timestamps: true do
     state :pending, initial: true
